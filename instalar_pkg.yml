@@ -1,0 +1,9 @@
+---
+  - name: Instalar pacotes
+    hosts: clientes
+    gather_facts: no
+    tasks:
+    - name: Install rsync
+      ansible.builtin.apt:
+        name: rsync
+        state: present
