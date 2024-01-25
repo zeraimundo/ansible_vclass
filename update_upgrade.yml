@@ -1,0 +1,12 @@
+---
+  - name: Atualizar repositórios e pacotes
+    hosts: clientes
+    gather_facts: no
+    tasks:
+        - name: Atualizar apt-get repo e cache
+          apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+
+        - name: Atualizar todos os pacotes para ultima versão
+          ansible.builtin.apt:
+            name: "*"
+            state: latest
