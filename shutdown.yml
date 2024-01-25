@@ -1,0 +1,7 @@
+---
+  - name: Desligar os Clientes
+    hosts: clientes
+    gather_facts: no
+    tasks:
+    -  name: Desligar clientes
+       community.general.shutdown:
