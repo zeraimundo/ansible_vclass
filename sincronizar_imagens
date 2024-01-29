@@ -1,0 +1,12 @@
+---
+  - name: Instalar pacotes
+    hosts: clientes
+    gather_facts: no
+    vars:
+      source: '/sync/'
+      destination: '/tmp/'
+    tasks:
+      - name: Synchronization of src on the control machine to dest on the remote hosts
+        ansible.posix.synchronize:
+          src: '{{source}}'
+          dest: '{{destination}}'
