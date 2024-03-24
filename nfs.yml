@@ -1,0 +1,28 @@
+- name: Setup NFS client and download files
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Install NFS client package
+      apt:
+        name: nfs-common
+        state: present
+
+    - name: Mount NFS share
+      mount:
+        path: /nfs
+        src: 10.0.0.1:/nfs
+        fstype: nfs
+        state: mounted
+        opts: ro
+
+    - name: Download Debian from NFS share
+      fetch:
+        src: /nfs/debian11.qcow2
+        dest: /tmp/debian11.qcow2
+          #remote_src: false
+
+    - name: Download Windows from NFS share
+      fetch:
+        src: /nfs/win10.qcow2
+        dest: /tmp/win10.qcow2
+          #remote_src: false
